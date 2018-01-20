@@ -7,7 +7,7 @@
 Summary: A GNU implementation of Scheme for application extensibility
 Name: guile22
 Version: 2.2.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Source: ftp://ftp.gnu.org/pub/gnu/guile/guile-%{version}.tar.xz
 URL: http://www.gnu.org/software/guile/
 License: LGPLv3+
@@ -186,6 +186,9 @@ fi
 
 
 %changelog
+* Sat Jan 20 2018 Björn Esser <besser82@fedoraproject.org> - 2.2.2-2
+- Rebuilt for switch to libxcrypt
+
 * Fri Aug 04 2017 John Dulaney <jdulaney@fedoraproject.org> - 2.2.2-1
 - Update to newest upstream release.
 
