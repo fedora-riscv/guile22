@@ -7,7 +7,7 @@
 Summary: A GNU implementation of Scheme for application extensibility
 Name: guile22
 Version: 2.2.2
-Release: 3%{?dist}
+Release: 4%{?dist}
 Source: ftp://ftp.gnu.org/pub/gnu/guile/guile-%{version}.tar.xz
 URL: http://www.gnu.org/software/guile/
 License: LGPLv3+
@@ -186,6 +186,9 @@ fi
 
 
 %changelog
+* Fri Feb 09 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 2.2.2-4
+- Escape macros in %%changelog
+
 * Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.2.2-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
@@ -206,7 +209,7 @@ fi
 
 * Tue Apr 18 2017 John Dulaney <jdulaney@fedoraproject.org> - 2.2.0-5
 - Update handling of info files with sed
-- update %post and %preun
+- update %%post and %%preun
 
 * Fri Apr 07 2017 John Dulaney <jdulaney@fedoraproject.org> - 2.2.0-4
 - Add Provides for bundled gnulib
@@ -215,7 +218,7 @@ fi
 * Wed Apr 05 2017 John Dulaney <jdulaney@fedoraproject.org> - 2.2.0-3
 - Remove extra dash from binarie names
 - Remove symlinks to /usr/bin/guile2{,-tools}
-- Remove %triggerin -- guile and %postrans should be removed
+- Remove %%triggerin -- guile and %%postrans should be removed
 
 * Thu Mar 30 2017 John Dulaney <jdulaney@fedoraproject.org> - 2.2.0-2
 - Split 2.2 out as its own package
