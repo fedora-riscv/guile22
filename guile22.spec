@@ -1,13 +1,13 @@
 # Guile produces ELF images that are just containers for guile and don't
 # include build-ids. https://wingolog.org/archives/2014/01/19/elf-in-guile
-%undefine _missing_build_ids_terminate_build 
+%undefine _missing_build_ids_terminate_build
 
 %global mver 2.2
 
 Summary: A GNU implementation of Scheme for application extensibility
 Name: guile22
 Version: 2.2.2
-Release: 4%{?dist}
+Release: 5%{?dist}
 Source: ftp://ftp.gnu.org/pub/gnu/guile/guile-%{version}.tar.xz
 URL: http://www.gnu.org/software/guile/
 License: LGPLv3+
@@ -186,6 +186,9 @@ fi
 
 
 %changelog
+* Wed Mar 14 2018 John Dulaney <jdulaney@fedoraproject.org> - 2.2.2-5
+- Investigate FTBFS
+
 * Fri Feb 09 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 2.2.2-4
 - Escape macros in %%changelog
 
