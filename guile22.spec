@@ -111,14 +111,14 @@ make %{?_smp_mflags} check
 
 
 %post
-/sbin/ldconfig
+%?ldconfig
 for i in guile r5rs; do
     /sbin/install-info %{_infodir}/${i}-%{mver}.info.gz %{_infodir}/dir &> /dev/null
 done
 :
 
 
-%postun -p /sbin/ldconfig
+%ldconfig_postun
 
 
 %preun
