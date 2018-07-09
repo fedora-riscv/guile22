@@ -19,6 +19,7 @@ Requires: coreutils
 Provides: bundled(gnulib)
 
 Patch1: guile-multilib.patch
+Patch2: guile-i18ntest.patch
 Patch3: guile-threadstest.patch
 Patch4: disable-out-of-memory-test.patch
 
@@ -48,6 +49,7 @@ install the guile package.
 %prep
 %setup -q -n guile-%version
 %patch1 -p1 -b .multilib
+%patch2 -p1
 %patch3 -p1 -b .threadstest
 %patch4 -p1
 
