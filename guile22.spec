@@ -11,7 +11,7 @@ Release: 5%{?dist}
 Source: ftp://ftp.gnu.org/pub/gnu/guile/guile-%{version}.tar.xz
 URL: http://www.gnu.org/software/guile/
 License: LGPLv3+
-BuildRequires: gcc libtool libtool-ltdl-devel gmp-devel readline-devel
+BuildRequires: libtool libtool-ltdl-devel gmp-devel readline-devel
 BuildRequires: gettext-devel libunistring-devel libffi-devel gc-devel
 Requires(post): /sbin/install-info
 Requires: coreutils
@@ -19,6 +19,7 @@ Requires: coreutils
 Provides: bundled(gnulib)
 
 Patch1: guile-multilib.patch
+Patch2: guile-i18ntest.patch
 Patch3: guile-threadstest.patch
 Patch4: disable-out-of-memory-test.patch
 
@@ -48,6 +49,7 @@ install the guile package.
 %prep
 %setup -q -n guile-%version
 %patch1 -p1 -b .multilib
+%patch2 -p1
 %patch3 -p1 -b .threadstest
 %patch4 -p1
 
@@ -111,14 +113,14 @@ make %{?_smp_mflags} check
 
 
 %post
-%?ldconfig
+/sbin/ldconfig
 for i in guile r5rs; do
     /sbin/install-info %{_infodir}/${i}-%{mver}.info.gz %{_infodir}/dir &> /dev/null
 done
 :
 
 
-%ldconfig_postun
+%postun -p /sbin/ldconfig
 
 
 %preun
@@ -186,8 +188,8 @@ fi
 
 
 %changelog
-* Wed Mar 14 2018 John Dulaney <jdulaney@fedoraproject.org> - 2.2.2-5
-- Investigate FTBFS
+* Sun Jul 07 2018 John Dulaney <jdulaney@fedoraproject.org> - 2.2.2-5
+- Fix French tests
 
 * Fri Feb 09 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 2.2.2-4
 - Escape macros in %%changelog
