@@ -6,8 +6,8 @@
 
 Summary: A GNU implementation of Scheme for application extensibility
 Name: guile22
-Version: 2.2.2
-Release: 7%{?dist}
+Version: 2.2.4
+Release: 1%{?dist}
 Source: ftp://ftp.gnu.org/pub/gnu/guile/guile-%{version}.tar.xz
 URL: http://www.gnu.org/software/guile/
 License: LGPLv3+
@@ -19,7 +19,6 @@ Requires: coreutils
 Provides: bundled(gnulib)
 
 Patch1: guile-multilib.patch
-Patch2: guile-i18ntest.patch
 Patch3: guile-threadstest.patch
 Patch4: disable-out-of-memory-test.patch
 
@@ -49,7 +48,6 @@ install the guile package.
 %prep
 %setup -q -n guile-%version
 %patch1 -p1 -b .multilib
-%patch2 -p1
 %patch3 -p1 -b .threadstest
 %patch4 -p1
 
@@ -188,13 +186,16 @@ fi
 
 
 %changelog
+* Fri Jan 18 2019 Mairi Dulaney <jdulaney@fedoraproject.org> - 2.2.4-1
+- Update to latest release - 2.2.4
+
 * Mon Jan 14 2019 Björn Esser <besser82@fedoraproject.org> - 2.2.2-7
 - Rebuilt for libcrypt.so.2 (#1666033)
 
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.2.2-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
-* Sun Jul 07 2018 John Dulaney <jdulaney@fedoraproject.org> - 2.2.2-5
+* Sat Jul 07 2018 John Dulaney <jdulaney@fedoraproject.org> - 2.2.2-5
 - Fix French tests
 
 * Fri Feb 09 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 2.2.2-4
