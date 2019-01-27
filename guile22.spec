@@ -13,7 +13,6 @@ URL: http://www.gnu.org/software/guile/
 License: LGPLv3+
 BuildRequires: libtool libtool-ltdl-devel gmp-devel readline-devel
 BuildRequires: gettext-devel libunistring-devel libffi-devel gc-devel
-Requires(post): /sbin/install-info
 Requires: coreutils
 
 Provides: bundled(gnulib)
@@ -110,25 +109,8 @@ rm $RPM_BUILD_ROOT%{_libdir}/guile/%{mver}/extensions/guile-readline.la
 make %{?_smp_mflags} check
 
 
-%post
-/sbin/ldconfig
-for i in guile r5rs; do
-    /sbin/install-info %{_infodir}/${i}-%{mver}.info.gz %{_infodir}/dir &> /dev/null
-done
-:
-
-
+%post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
-
-
-%preun
-if [ "$1" = 0 ]; then
-    for i in guile r5rs; do
-        /sbin/install-info --delete %{_infodir}/${i}-%{mver}.info.gz \
-            %{_infodir}/dir &> /dev/null
-    done
-fi
-:
 
 
 %triggerin -- slib >= 3b4-1
