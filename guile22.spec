@@ -6,9 +6,9 @@
 
 Summary: A GNU implementation of Scheme for application extensibility
 Name: guile22
-Version: 2.2.4
-Release: 3%{?dist}
-Source: ftp://ftp.gnu.org/pub/gnu/guile/guile-%{version}.tar.xz
+Version: 2.2.6
+Release: 1%{?dist}
+Source: ftp://ftp.gnu.org/pub/gnu/guile/guile-%{version}.tar.gz
 URL: http://www.gnu.org/software/guile/
 License: LGPLv3+
 BuildRequires: libtool libtool-ltdl-devel gmp-devel readline-devel
@@ -168,6 +168,9 @@ fi
 
 
 %changelog
+* Wed Jul 03 2019 Mairi Dulaney <jdulaney@fedoraproject.org> - 2.2.6-1
+- Update to latest release
+
 * Sun Feb 17 2019 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 2.2.4-3
 - Rebuild for readline 8.0
 
