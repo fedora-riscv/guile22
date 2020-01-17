@@ -7,7 +7,7 @@
 Summary: A GNU implementation of Scheme for application extensibility
 Name: guile22
 Version: 2.2.6
-Release: 2%{?dist}
+Release: 3%{?dist}
 Source: ftp://ftp.gnu.org/pub/gnu/guile/guile-%{version}.tar.gz
 URL: http://www.gnu.org/software/guile/
 License: LGPLv3+
@@ -20,6 +20,7 @@ Provides: bundled(gnulib)
 Patch1: guile-multilib.patch
 Patch3: guile-threadstest.patch
 Patch4: disable-out-of-memory-test.patch
+Patch5: guile-configure.patch
 
 %description
 GUILE (GNU's Ubiquitous Intelligent Language for Extension) is a library
@@ -49,9 +50,11 @@ install the guile package.
 %patch1 -p1 -b .multilib
 %patch3 -p1 -b .threadstest
 %patch4 -p1
+%patch5 -p1 -b .configure
 
 %build
 
+autoreconf -fiv
 %configure --disable-static --disable-error-on-warning --program-suffix=%{?mver}
 
 # Remove RPATH
@@ -168,6 +171,9 @@ fi
 
 
 %changelog
+* Fri Jan 17 2020 Jeff Law <law@redhat.com> - 2.2.6-3
+- Fix configure tests compromised by LTO
+
 * Thu Jul 25 2019 Fedora Release Engineering <releng@fedoraproject.org> - 2.2.6-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
