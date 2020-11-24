@@ -4,13 +4,14 @@
 
 %global mver 2.2
 
-Summary: A GNU implementation of Scheme for application extensibility
 Name: guile22
-Version: 2.2.6
-Release: 6%{?dist}
-Source: ftp://ftp.gnu.org/pub/gnu/guile/guile-%{version}.tar.gz
+Version: 2.2.7
+Release: 1%{?dist}
+Summary: A GNU implementation of Scheme for application extensibility
+Source: ftp://ftp.gnu.org/pub/gnu/guile/guile-%{version}.tar.xz
 URL: http://www.gnu.org/software/guile/
 License: LGPLv3+
+
 BuildRequires: libtool libtool-ltdl-devel gmp-devel readline-devel
 BuildRequires: gettext-devel libunistring-devel libffi-devel gc-devel
 Requires: coreutils
@@ -46,14 +47,9 @@ applications that will be linked to GUILE.  You'll also need to
 install the guile package.
 
 %prep
-%setup -q -n guile-%version
-%patch1 -p1 -b .multilib
-%patch3 -p1 -b .threadstest
-%patch4 -p1
-%patch5 -p1 -b .configure
+%autosetup -p1 -n guile-%version
 
 %build
-
 autoreconf -fiv
 %configure --disable-static --disable-error-on-warning --program-suffix=%{?mver}
 
@@ -61,10 +57,10 @@ autoreconf -fiv
 sed -i 's|" $sys_lib_dlsearch_path "|" $sys_lib_dlsearch_path %{_libdir} "|' \
     libtool
 
-make %{?_smp_mflags}
+%{make_build}
 
 %install
-make DESTDIR=$RPM_BUILD_ROOT install
+%{make_install}
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/guile/site/%{mver}
 
@@ -84,9 +80,6 @@ mv $RPM_BUILD_ROOT%{_datadir}/aclocal/guile{,-%{mver}}.m4
 
 # Our gdb doesn't support guile yet
 rm -f $RPM_BUILD_ROOT%{_libdir}/libguile*gdb.scm
-
-# Compress large documentation
-bzip2 NEWS
 
 for i in $RPM_BUILD_ROOT%{_infodir}/goops.info; do
     iconv -f iso8859-1 -t utf-8 < $i > $i.utf8 && mv -f ${i}{.utf8,}
@@ -131,7 +124,7 @@ fi
 
 %files
 %license COPYING COPYING.LESSER LICENSE
-%doc AUTHORS HACKING NEWS.bz2 README THANKS
+%doc AUTHORS HACKING README THANKS
 %{_bindir}/guild%{?mver}
 %{_bindir}/guile%{?mver}
 %{_bindir}/guile-tools%{?mver}
@@ -167,6 +160,9 @@ fi
 
 
 %changelog
+* Tue Nov 24 2020 Peter Robinson <pbrobinson@fedoraproject.org> - 2.2.7-1
+- Update to 2.2.7
+
 * Wed Aug 19 2020 Igor Raits <ignatenkobrain@fedoraproject.org> - 2.2.6-6
 - Drop useless ldconfig scriptlets
 
