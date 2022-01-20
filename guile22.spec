@@ -6,7 +6,7 @@
 
 Name: guile22
 Version: 2.2.7
-Release: 4%{?dist}
+Release: 5%{?dist}
 Summary: A GNU implementation of Scheme for application extensibility
 Source: ftp://ftp.gnu.org/pub/gnu/guile/guile-%{version}.tar.xz
 URL: http://www.gnu.org/software/guile/
@@ -161,6 +161,9 @@ fi
 
 
 %changelog
+* Thu Jan 20 2022 Fedora Release Engineering <releng@fedoraproject.org> - 2.2.7-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
+
 * Sat Jan 08 2022 Miro Hrončok <mhroncok@redhat.com> - 2.2.7-4
 - Rebuilt for https://fedoraproject.org/wiki/Changes/LIBFFI34
 
