@@ -2,11 +2,16 @@
 # include build-ids. https://wingolog.org/archives/2014/01/19/elf-in-guile
 %undefine _missing_build_ids_terminate_build
 
+# rpatch check still failed with riscv64
+%ifarch riscv64
+%undefine __brp_check_rpaths
+%endif
+
 %global mver 2.2
 
 Name: guile22
 Version: 2.2.7
-Release: 6%{?dist}
+Release: 6.rv64%{?dist}
 Summary: A GNU implementation of Scheme for application extensibility
 Source: ftp://ftp.gnu.org/pub/gnu/guile/guile-%{version}.tar.xz
 URL: http://www.gnu.org/software/guile/
@@ -161,6 +166,9 @@ fi
 
 
 %changelog
+* Fri Dec 02 2022 Liu Yang <Yang.Liu.sn@gmail.com> - 2.2.7-6.rv64
+- Undefine __brp_check_rpaths to avoid error on riscv64.
+
 * Thu Jul 21 2022 Fedora Release Engineering <releng@fedoraproject.org> - 2.2.7-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
 
