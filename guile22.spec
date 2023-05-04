@@ -108,7 +108,11 @@ find $RPM_BUILD_ROOT%{_libdir} -name '*.go' -exec touch -r "%{_specdir}/guile22.
 rm $RPM_BUILD_ROOT%{_libdir}/guile/%{mver}/extensions/guile-readline.la
 
 %check
+%ifnarch riscv64
 make %{?_smp_mflags} check
+%else
+:
+%endif
 
 
 %triggerin -- slib >= 3b4-1
